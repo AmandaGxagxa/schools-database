@@ -26,7 +26,7 @@ select * from teacher
 	join teacher_subject on teacher.id = teacher_subject.teacher_id
 	join subject on teacher_subject.subject_id = subject.id;
 
---	finding all the teachers that are teaching mathematics
+--	finding all the teachers that are teaching Geography.
 select
 	teacher.*
 from teacher
@@ -44,3 +44,22 @@ from teacher
 group by
    teacher.first_name, teacher.last_name, teacher.email
 having count(*) >= 3;
+-- finding how many subjects its teacher teaches.
+select
+   teacher.first_name, teacher.last_name, teacher.email, count(*)
+from teacher
+	join teacher_subject on teacher.id = teacher_subject.teacher_id
+	join subject on teacher_subject.subject_id = subject.id
+group by
+   teacher.first_name, teacher.last_name, teacher.email
+
+
+--   finding all the subjects taught by a given teacher.
+
+select
+	subject.*
+from subject
+ 	join teacher_subject on teacher.id = teacher_subject.teacher_id
+	join subject on teacher_subject.subject_id = subject.id
+where
+	teacher.first_name = 'Siba';
